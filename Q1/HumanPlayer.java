@@ -14,12 +14,17 @@ public class HumanPlayer implements Player{
             value = Integer.parseInt(answer)-1;
            
             if(value < 0 || value >= (game.lines*game.columns)){
-            	System.out.println("The value should be between 1 and " + (game.lines*game.columns));
+                System.out.println("The value should be between 1 and " + (game.lines*game.columns));
+                play(game);
             } else if(game.valueAt(value) != CellValue.EMPTY) {
-            	System.out.println("This cell has already been played");
+                System.out.println("This cell has already been played");
+                play(game);
             } else {
             	game.play(value);
             }
         }
+    }
+    public String toString(){
+        return "Human Playing";
     }
 }

@@ -9,15 +9,17 @@ public class ComputerRandomPlayer implements Player{
             // System.out.println(game);
         	// System.out.print(game.nextCellValue() + " to play: ");
         	// String answer = Utils.console.readLine();
-            int value = Utils.generator.nextInt(game.lines*game.columns+1);
-                       
-            if(value <= 0 || value >= (game.lines*game.columns)){
-            	System.out.println("The value should be between 1 and " + (game.lines*game.columns));
-            } else if(game.valueAt(value-1) != CellValue.EMPTY) {
-            	System.out.println("This cell has already been played");
+            int value = Utils.generator.nextInt(game.lines*game.columns);
+
+            if (game.valueAt(value)==CellValue.EMPTY){
+                game.play(value);
             } else {
-            	game.play(value-1);
+                play(game);
             }
+                       
         }
+    }
+    public String toString(){
+        return "Robot Playing";
     }
 }

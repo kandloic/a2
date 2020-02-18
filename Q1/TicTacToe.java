@@ -67,9 +67,10 @@ public class TicTacToe{
 
         while (game.getGameState()==GameState.PLAYING){
             System.out.println("Player "+(turn+1)+"s turn.");
-            //System.out.println(players[turn]+" "+turn);
+            System.out.println(players[turn]+" - cue :"+turn);
             players[turn].play(game);
             turn = Math.abs(turn-1);
+            
 
             if (game.getGameState()!=GameState.PLAYING) {
                 System.out.println("Game over");
@@ -79,7 +80,8 @@ public class TicTacToe{
                 String replay = Utils.console.readLine("Want to play again?");
 
                 if(replay.equals("y") || replay.equals("Y")){
-                    turn = Math.abs(first-1);
+                    first = Math.abs(first-1);
+                    turn = first;
                     TicTacToeGame newGame = new TicTacToeGame(game.lines, game.columns, game.sizeWin);
                     game = newGame;
                 }
