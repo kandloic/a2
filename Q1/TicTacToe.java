@@ -52,6 +52,8 @@ public class TicTacToe{
             columns  = 3;
             win = 3;
         }
+
+        game = new TicTacToeGame(lines, columns, win);
         
         HumanPlayer human = new HumanPlayer();
         ComputerRandomPlayer comp = new ComputerRandomPlayer();
@@ -65,6 +67,7 @@ public class TicTacToe{
 
         while (game.getGameState()==GameState.PLAYING){
             System.out.println("Player "+(turn+1)+"s turn.");
+            //System.out.println(players[turn]+" "+turn);
             players[turn].play(game);
             turn = Math.abs(turn-1);
 
@@ -73,7 +76,7 @@ public class TicTacToe{
                 System.out.println(game);
                 System.out.println("Result: "+game.getGameState());
 
-                String replay = Utils.console.readLine();
+                String replay = Utils.console.readLine("Want to play again?");
 
                 if(replay.equals("y") || replay.equals("Y")){
                     turn = Math.abs(first-1);
