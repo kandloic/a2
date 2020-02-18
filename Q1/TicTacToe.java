@@ -53,9 +53,36 @@ public class TicTacToe{
             win = 3;
         }
         
-        Player[] players;
+        HumanPlayer human = new HumanPlayer();
+        ComputerRandomPlayer comp = new ComputerRandomPlayer();
+        Player[] players = {human, comp};
 
-        // YOUR CODE HERE  
+        // YOUR CODE HERE    
+
+        int first = Utils.generator.nextInt(2);
+
+        int turn = first;
+
+        while (game.getGameState()==GameState.PLAYING){
+            System.out.println("Player "+(turn+1)+"s turn.");
+            players[turn].play(game);
+            turn = Math.abs(turn-1);
+
+            if (game.getGameState()!=GameState.PLAYING) {
+                System.out.println("Game over");
+                System.out.println(game);
+                System.out.println("Result: "+game.getGameState());
+
+                String replay = Utils.console.readLine();
+
+                if(replay.equals("y") || replay.equals("Y")){
+                    turn = Math.abs(first-1);
+                    TicTacToeGame newGame = new TicTacToeGame(game.lines, game.columns, game.sizeWin);
+                    game = newGame;
+                }
+
+            }
+        }
 
     }
 
