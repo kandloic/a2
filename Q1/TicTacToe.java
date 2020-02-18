@@ -3,12 +3,12 @@
 public class TicTacToe{
 
    /**
-     * <b>main</b> of the application. Creates the instance of  GameController 
+     * <b>main</b> of the application. Creates the instance of  GameController
      * and starts the game. If two parameters line  and column
-     * are passed, they are used. 
+     * are passed, they are used.
      * Otherwise, a default value is used. Defaults values are also
      * used if the paramters are too small (less than 2).
-     * 
+     *
      * @param args
      *            command line parameters
      */
@@ -21,7 +21,7 @@ public class TicTacToe{
         int columns = 3;
         int win = 3;
 
-   
+
         try{
             if (args.length >= 2) {
                 lines = Integer.parseInt(args[0]);
@@ -41,10 +41,10 @@ public class TicTacToe{
                     System.out.println("Invalid argument, using default...");
                     win = 3;
                 }
-            } 
+            }
             if (args.length > 3){
                 System.out.println("Too many arguments. Only the first 3 are used.");
-            } 
+            }
 
         } catch(NumberFormatException e){
             System.out.println("Invalid argument, using default...");
@@ -54,12 +54,12 @@ public class TicTacToe{
         }
 
         game = new TicTacToeGame(lines, columns, win);
-        
+
         HumanPlayer human = new HumanPlayer();
         ComputerRandomPlayer comp = new ComputerRandomPlayer();
         Player[] players = {human, comp};
 
-        // YOUR CODE HERE    
+        // YOUR CODE HERE
 
         int first = Utils.generator.nextInt(2);
 
@@ -67,10 +67,10 @@ public class TicTacToe{
 
         while (game.getGameState()==GameState.PLAYING){
             System.out.println("Player "+(turn+1)+"s turn.");
-            System.out.println(players[turn]+" - cue :"+turn);
+            //System.out.println(players[turn]+" - cue :"+turn);
             players[turn].play(game);
             turn = Math.abs(turn-1);
-            
+
 
             if (game.getGameState()!=GameState.PLAYING) {
                 System.out.println("Game over");
