@@ -68,7 +68,7 @@ public class TicTacToeGame {
 
    /**
 	* constructor allowing to specify the number of lines
-	* and the number of columns for the game, as well as 
+	* and the number of columns for the game, as well as
 	* the number of cells that must be aligned to win.
    	* @param lines
     *  the number of lines in the game
@@ -103,9 +103,20 @@ public class TicTacToeGame {
   	*/
 
 	public TicTacToeGame(TicTacToeGame base, int next){
-
-
 		// YOUR CODE HERE
+		this.lines = base.lines;
+		this.columns = base.columns;
+		this.sizeWin = base.sizeWin;
+		board = new CellValue[lines*columns];
+		for(int i = 0; i < lines*columns ; i++) {
+			board[i] = base.valueAt(i);
+		}
+
+		board[next]=nextCellValue();
+
+		level = base.getLevel()+1;
+
+		gameState = GameState.PLAYING;
 
 	}
 
@@ -119,9 +130,13 @@ public class TicTacToeGame {
     *  the TicTacToeGame instance to be compared with this one
   	*/
 	public boolean equals(TicTacToeGame other) {
-
 		// YOUR CODE HERE
-
+		for(int i = 0; i < lines*columns ; i++) {
+			if (this.valueAt(i) != other.valueAt(i)){
+				return false;
+			}
+		}
+		return this.lines==other.lines && this.columns==other.columns && this.sizeWin==other.sizeWin;
 	}
 
    /**
@@ -145,11 +160,11 @@ public class TicTacToeGame {
 
    /**
 	* returns the cellValue that is expected next,
-	* in other word, which played (X or O) should 
+	* in other word, which played (X or O) should
 	* play next.
 	* This method does not modify the state of the
 	* game.
-	* @return 
+	* @return
     *  the value of the enum CellValue corresponding
     * to the next expected value.
   	*/
@@ -164,7 +179,7 @@ public class TicTacToeGame {
 	* printed out. The behaviour is then unspecified
    	* @param i
     *  the index of the cell in the array board
-    * @return 
+    * @return
     *  the value at index i in the variable board.
   	*/
 	public CellValue valueAt(int i) {
@@ -187,10 +202,10 @@ public class TicTacToeGame {
 	* as the state of the game.
 	* To faciliate testing, is is acceptable to keep playing
 	* after a game is already won. If that is the case, the
-	* a message should be printed out and the move recorded. 
+	* a message should be printed out and the move recorded.
 	* the  winner of the game is the player who won first
    	* @param i
-    *  the index of the cell in the array board that has been 
+    *  the index of the cell in the array board that has been
     * selected by the next player
   	*/
 	public void play(int i) {
@@ -199,7 +214,7 @@ public class TicTacToeGame {
 			throw new IllegalArgumentException("Illegal position: " + i);
 		}
 		if(board[i] != CellValue.EMPTY) {
-			throw new IllegalArgumentException("CellValue not empty: " + i + " in game " + toString());			
+			throw new IllegalArgumentException("CellValue not empty: " + i + " in game " + toString());
 		}
 
 		board[i] = nextCellValue();
@@ -209,7 +224,7 @@ public class TicTacToeGame {
 		} else {
 			setGameState(i);
 		}
-	
+
 	}
 
 
@@ -220,11 +235,11 @@ public class TicTacToeGame {
 	* at index i, the gameState variable was correctly set.
 	* it also assumes that it is only called if the game was
 	* not already finished when the cell at index i was played
-	* (the the game was playing). Therefore, it only needs to 
+	* (the the game was playing). Therefore, it only needs to
 	* check if playing at index i has concluded the game
-	* 
+	*
    	* @param i
-    *  the index of the cell in the array board that has just 
+    *  the index of the cell in the array board that has just
     * been set
   	*/
 
@@ -235,7 +250,7 @@ public class TicTacToeGame {
 		int right= Math.min(sizeWin-1,columns - (index%columns +1));
 		if( (countConsecutive(index-1, left,-1,board[index]) +
 		   	 countConsecutive(index+1, right,1,board[index]))
-			>= sizeWin-1 ) {			
+			>= sizeWin-1 ) {
 			setGameState(board[index]);
 			return;
 		}
@@ -246,25 +261,25 @@ public class TicTacToeGame {
 		int down= Math.min(sizeWin-1, lines - (index/columns +1));
 		if( (countConsecutive(index-columns, up,-columns,board[index]) +
 		   	 countConsecutive(index+columns, down,columns,board[index]))
-			>= sizeWin-1 ) {			
+			>= sizeWin-1 ) {
 			setGameState(board[index]);
 			return;
 		}
 
-		int upLeft = Math.min(up, left); 
-		int downRight= Math.min(down, right); 
+		int upLeft = Math.min(up, left);
+		int downRight= Math.min(down, right);
 		if( (countConsecutive(index-(columns+1), upLeft,-(columns+1),board[index]) +
 		   	 countConsecutive(index+(columns+1), downRight,columns+1,board[index]))
-			>= sizeWin-1 ) {			
+			>= sizeWin-1 ) {
 			setGameState(board[index]);
 			return;
 		}
 
-		int upRight= Math.min(up, right); 
-		int downLeft = Math.min(down, left); 
+		int upRight= Math.min(up, right);
+		int downLeft = Math.min(down, left);
 		if( (countConsecutive(index-(columns-1), upRight,-(columns-1),board[index]) +
 		   	 countConsecutive(index+(columns-1), downLeft,columns-1,board[index]))
-			>= sizeWin-1 ) {			
+			>= sizeWin-1 ) {
 			setGameState(board[index]);
 			return;
 		}
@@ -273,13 +288,13 @@ public class TicTacToeGame {
 		if (level == lines*columns) {
 			gameState = GameState.DRAW;
 		} else {
-			gameState = GameState.PLAYING;			
+			gameState = GameState.PLAYING;
 		}
 
 	}
 
 
-	private int countConsecutive(int startingPosition, int numberOfSteps, 
+	private int countConsecutive(int startingPosition, int numberOfSteps,
 		int stepGap, CellValue value){
 
 		int result= 0;
@@ -310,7 +325,7 @@ public class TicTacToeGame {
    /**
 	* Returns a String representation of the game matching
 	* the example provided in the assignment's description
-	* 
+	*
    	* @return
     *  String representation of the game
   	*/
@@ -343,7 +358,7 @@ public class TicTacToeGame {
 			}
 		}
 		return res ;
-		
+
 	}
 
 }

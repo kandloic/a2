@@ -1,11 +1,11 @@
 import java.util.LinkedList;
 
 public class ListOfGamesGenerator {
-	
+
 
    /**
 	* generates all different games for the specified
-	* parameters. Each game is recorded only once. 
+	* parameters. Each game is recorded only once.
 	* once a game is finished, it is not extended further
 	* @param lines
     *  the number of lines in the game
