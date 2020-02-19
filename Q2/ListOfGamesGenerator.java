@@ -42,7 +42,7 @@ public class ListOfGamesGenerator {
 		boolean playable=true;
 
 		int count=0;
-		for(int h=0; h<lines*columns; h++){
+		for(int h=0; h<outer.size(); h++){
 			LinkedList<TicTacToeGame> inner = new LinkedList<TicTacToeGame>();
 			for(int i=0; i<outer.get(h).size(); i++){
 				if(outer.get(h).get(i).getGameState()==GameState.PLAYING){
@@ -80,7 +80,7 @@ public class ListOfGamesGenerator {
 			//System.out.println(count+" OUTER LOOP!!!!!!!!!!!!!!!!!!!!!!");
 		}
 
-		System.out.println("OUTER length"+outer.size());
+		// System.out.println("OUTER length"+outer.size());
 
 		return outer;
 	}
