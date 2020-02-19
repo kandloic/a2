@@ -40,6 +40,7 @@ public class ListOfGamesGenerator {
 		outer.add(0, init);
 		boolean unique=true;
 		boolean playable=true;
+		TicTacToeGame gameTemplate;
 
 		int h=0;
 		while(playable){
@@ -48,12 +49,13 @@ public class ListOfGamesGenerator {
 				if(outer.get(h).get(i).getGameState()==GameState.PLAYING){
 					for(int j=0; j<lines*columns; j++){
 						if(outer.get(h).get(i).valueAt(j)==CellValue.EMPTY){
-							TicTacToeGame gameTemplate = new TicTacToeGame(outer.get(h).get(i),j);
+							gameTemplate = new TicTacToeGame(outer.get(h).get(i),j);
 							//System.out.println(gameTemplate);
 							unique=true;
 							for(int k=0; k<inner.size(); k++){
 								if(gameTemplate.equals(inner.get(k))){
 									unique=false;
+									break;
 									//System.out.println("unique:"+unique);
 								}
 								//System.out.println("k:"+k);
