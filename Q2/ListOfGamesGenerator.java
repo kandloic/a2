@@ -16,9 +16,72 @@ public class ListOfGamesGenerator {
     * @return
     * a list of lists of game instances, ordered by levels
   	*/
+
+	//private static LinkedList<TicTacToeGame> generateLevel(LinkedList<TicTacToeGame> prevLevel, int lines, int columns, int winLength){}
+
+
 	public static LinkedList<LinkedList<TicTacToeGame>> generateAllGames(int lines, int columns, int winLength){
 
 		//YOUR CODE HERE
 
+		//level seperation (for/case by case)
+			//
+			// remove duplicates
+			// put level in the large LinkedList
+
+		//
+
+		LinkedList<LinkedList<TicTacToeGame>> outer = new LinkedList<LinkedList<TicTacToeGame>>();
+
+		LinkedList<TicTacToeGame> init = new LinkedList<TicTacToeGame>();
+		TicTacToeGame initBoard = new TicTacToeGame(lines, columns, winLength);
+		System.out.println(initBoard);
+		init.add(0, initBoard);
+		outer.add(0, init);
+		boolean unique=true;
+		boolean playable=true;
+
+		int count=0;
+		for(int h=0; h<lines*columns; h++){
+			LinkedList<TicTacToeGame> inner = new LinkedList<TicTacToeGame>();
+			for(int i=0; i<outer.get(h).size(); i++){
+				if(outer.get(h).get(i).getGameState()==GameState.PLAYING){
+					for(int j=0; j<lines*columns; j++){
+						if(outer.get(h).get(i).valueAt(j)==CellValue.EMPTY){
+							TicTacToeGame gameTemplate = new TicTacToeGame(outer.get(h).get(i),j);
+							System.out.println(gameTemplate);
+							unique=true;
+							for(int k=0; k<inner.size(); k++){
+								if(gameTemplate.equals(inner.get(k))){
+									unique=false;
+									System.out.println("unique:"+unique);
+								}
+								System.out.println("k:"+k);
+							}
+							if(unique){
+								inner.add(gameTemplate);
+							}
+						}
+					}
+
+				}
+				count++;
+				//System.out.println(count+" INNER LOOP!!!!!!!!!!!!!!!!!!!!!!");
+			}
+			playable=false;
+			for(int l=0; l<inner.size(); l++){
+				if(inner.get(l).getGameState()==GameState.PLAYING){
+					playable=true;
+				}
+			}
+			if(playable){
+				outer.add(inner);
+			}
+			//System.out.println(count+" OUTER LOOP!!!!!!!!!!!!!!!!!!!!!!");
+		}
+
+		System.out.println("OUTER length"+outer.size());
+
+		return outer;
 	}
 }
