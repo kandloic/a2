@@ -45,15 +45,15 @@ public class ListOfGamesGenerator {
 		int h=0;
 		while(playable){
 			LinkedList<TicTacToeGame> inner = new LinkedList<TicTacToeGame>();
-			for(int i=0; i<outer.get(h).size(); i++){
-				if(outer.get(h).get(i).getGameState()==GameState.PLAYING){
+			for(TicTacToeGame niveau : outer.get(h)/*int i=0; i<outer.get(h).size(); i++*/){
+				if(niveau.getGameState()==GameState.PLAYING){
 					for(int j=0; j<lines*columns; j++){
-						if(outer.get(h).get(i).valueAt(j)==CellValue.EMPTY){
-							gameTemplate = new TicTacToeGame(outer.get(h).get(i),j);
+						if(niveau.valueAt(j)==CellValue.EMPTY){
+							gameTemplate = new TicTacToeGame(niveau,j);
 							//System.out.println(gameTemplate);
 							unique=true;
-							for(int k=0; k<inner.size(); k++){
-								if(gameTemplate.equals(inner.get(k))){
+							for(TicTacToeGame everyGame : inner){
+								if(gameTemplate.equals(everyGame)){
 									unique=false;
 									break;
 									//System.out.println("unique:"+unique);
