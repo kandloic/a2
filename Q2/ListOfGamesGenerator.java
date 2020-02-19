@@ -35,37 +35,37 @@ public class ListOfGamesGenerator {
 
 		LinkedList<TicTacToeGame> init = new LinkedList<TicTacToeGame>();
 		TicTacToeGame initBoard = new TicTacToeGame(lines, columns, winLength);
-		System.out.println(initBoard);
+		//System.out.println(initBoard);
 		init.add(0, initBoard);
 		outer.add(0, init);
 		boolean unique=true;
 		boolean playable=true;
 
-		int count=0;
-		for(int h=0; h<outer.size(); h++){
+		int h=0;
+		while(playable){
 			LinkedList<TicTacToeGame> inner = new LinkedList<TicTacToeGame>();
 			for(int i=0; i<outer.get(h).size(); i++){
 				if(outer.get(h).get(i).getGameState()==GameState.PLAYING){
 					for(int j=0; j<lines*columns; j++){
 						if(outer.get(h).get(i).valueAt(j)==CellValue.EMPTY){
 							TicTacToeGame gameTemplate = new TicTacToeGame(outer.get(h).get(i),j);
-							System.out.println(gameTemplate);
+							//System.out.println(gameTemplate);
 							unique=true;
 							for(int k=0; k<inner.size(); k++){
 								if(gameTemplate.equals(inner.get(k))){
 									unique=false;
-									System.out.println("unique:"+unique);
+									//System.out.println("unique:"+unique);
 								}
-								System.out.println("k:"+k);
+								//System.out.println("k:"+k);
 							}
 							if(unique){
 								inner.add(gameTemplate);
 							}
 						}
 					}
-
 				}
-				count++;
+				//count++;
+				//System.out.println("i:"+i);
 				//System.out.println(count+" INNER LOOP!!!!!!!!!!!!!!!!!!!!!!");
 			}
 			playable=false;
@@ -74,13 +74,22 @@ public class ListOfGamesGenerator {
 					playable=true;
 				}
 			}
-			if(playable){
-				outer.add(inner);
-			}
+
+			outer.add(inner);
+
+			// for(int a=0; a<outer.size(); a++){
+			// 	for(int b=0; b<outer.get(a).size(); b++){
+			// 			System.out.println(outer.get(a).get(b));
+			// 	}
+			// }
+
+			h++;
+			//System.out.println("h:"+h);
+			//System.out.println("OUTER length"+outer.size());
 			//System.out.println(count+" OUTER LOOP!!!!!!!!!!!!!!!!!!!!!!");
 		}
 
-		// System.out.println("OUTER length"+outer.size());
+		//System.out.println("OUTER length"+outer.size());
 
 		return outer;
 	}
