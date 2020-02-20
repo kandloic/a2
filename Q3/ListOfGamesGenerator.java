@@ -41,6 +41,7 @@ public class ListOfGamesGenerator {
 		boolean unique=true;
 		boolean playable=true;
 		TicTacToeGame gameTemplate;
+		boolean symetric;
 
 		int h=0;
 		while(playable){
@@ -52,15 +53,20 @@ public class ListOfGamesGenerator {
 							gameTemplate = new TicTacToeGame(niveau,j);
 							//System.out.println(gameTemplate);
 							unique=true;
+							symetric=false;
 							for(TicTacToeGame everyGame : inner){
 								if(gameTemplate.equals(everyGame)){
 									unique=false;
 									break;
 									//System.out.println("unique:"+unique);
 								}
+								if (Symetrie.symetry(gameTemplate, everyGame)){
+									symetric = true;
+									break;
+								}
 								//System.out.println("k:"+k);
 							}
-							if(unique){
+							if(unique && !symetric){
 								inner.add(gameTemplate);
 							}
 						}

@@ -32,25 +32,32 @@ public class Symetrie {
 
         TicTacToeGame d = game.verticalFlip();
         TicTacToeGame e = game.horizontalFlip();
-        return (newGame.equals(a) || newGame.equals(b) || newGame.equals(c) || newGame.equals(d) || newGame.equals(e));
+
+        TicTacToeGame f = game.diagonalSymetry();
+        TicTacToeGame g = game.counterDiagonalSymetry();
+        return (newGame.equals(a) || newGame.equals(b) || newGame.equals(c) || newGame.equals(d) || newGame.equals(e) || newGame.equals(f) || newGame.equals(g));
     }
 
     // FOLLOWING CODE IS FOR TESTING PURPOSES - Loic K.
 
-    /* public static void main(String[] args) {
+     /* public static void main(String[] args) {
         TicTacToeGame test = new TicTacToeGame();
+        test.play(0);
+        test.play(4);
         test.play(1);
+        test.play(8);
         test.play(5);
+        test.play(7);
+        test.play(2);
         System.out.println(test);
         System.out.println("******************");
 
         TicTacToeGame test2 = new TicTacToeGame();
-        test2.play(1);
-        test2.play(3);
+        test2 = test.counterDiagonalSymetry();
         System.out.println(test2);
-        System.out.println("******************");
+        // System.out.println("******************");
 
-        System.out.println(symetry(test, test2));
+        // System.out.println(symetry(test, test2));
 
         TicTacToeGame vtest = new TicTacToeGame();
         vtest.play(1);
@@ -61,8 +68,6 @@ public class Symetrie {
         TicTacToeGame vtest2 = new TicTacToeGame();
         vtest2 = vtest.horizontalFlip();
         System.out.println(vtest2);
-
-
 
     } */
 

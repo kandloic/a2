@@ -179,6 +179,31 @@ public class TicTacToeGame {
 		}
 		return newGame;
 	}
+
+
+	public TicTacToeGame diagonalSymetry() {
+		TicTacToeGame newGame = new TicTacToeGame();
+		int h=0;
+		for (int i = this.board.length-1; i>=this.board.length-columns;i--){
+			for (int j = i; j>=0; j-=lines){
+				newGame.board[h]  = this.board[j];
+				h++;
+			}
+		}
+		return newGame;
+	}
+
+	public TicTacToeGame counterDiagonalSymetry() {
+		TicTacToeGame newGame = new TicTacToeGame();
+		int h=0;
+		for (int i = 0; i<lines;i++){
+			for (int j = i; j<this.board.length; j+=columns){
+				newGame.board[h]  = this.board[j];
+				h++;
+			}
+		}
+		return newGame;
+	}
 	
 
 
