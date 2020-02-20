@@ -66,7 +66,7 @@ public class TicTacToe{
         int turn = first;
 
         while (game.getGameState()==GameState.PLAYING){
-            System.out.println("Player "+(turn+1)+"s turn.");
+            System.out.println("Player "+(turn+1)+"'s turn.");
             //System.out.println(players[turn]+" - cue :"+turn);
             players[turn].play(game);
             turn = Math.abs(turn-1);

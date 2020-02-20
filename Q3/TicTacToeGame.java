@@ -158,7 +158,7 @@ public class TicTacToeGame {
 	public TicTacToeGame verticalFlip() {
 		TicTacToeGame newGame = new TicTacToeGame();
 		int h=0;
-		for (int i=this.columns-1; i<this.board.length; i+=3){
+		for (int i=this.columns-1; i<this.board.length; i+=columns){
 			for (int j=i; j>i-this.columns; j--){
 				newGame.board[h] = this.board[j];
 				h++;
@@ -171,7 +171,7 @@ public class TicTacToeGame {
 	public TicTacToeGame horizontalFlip() {
 		TicTacToeGame newGame = new TicTacToeGame();
 		int h=0;
-		for (int i = this.board.length-columns; i>=0; i-=3){
+		for (int i = this.board.length-columns; i>=0; i-=columns){
 			for (int j=i; j<i+this.columns; j++){
 				newGame.board[h] = this.board[j];
 				h++;
