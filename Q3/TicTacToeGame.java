@@ -120,6 +120,7 @@ public class TicTacToeGame {
 	}
 
 
+
    /**
 	* Compares this instance of the game with the
 	* instance passed as parameter. Return true
@@ -137,6 +138,50 @@ public class TicTacToeGame {
 		}
 		return this.lines==other.lines && this.columns==other.columns && this.sizeWin==other.sizeWin;
 	}
+
+
+
+	public TicTacToeGame rotate() {
+        TicTacToeGame newGame = new TicTacToeGame();
+        int h=0;
+        
+        for (int i=this.columns-1; i>=0; i--){
+            for (int j=i; j<this.lines*this.columns; j+=this.columns){
+                newGame.board[h] = this.valueAt(j);
+                h++;
+            }
+        }
+        return newGame;
+	}
+
+
+	public TicTacToeGame verticalFlip() {
+		TicTacToeGame newGame = new TicTacToeGame();
+		int h=0;
+		for (int i=this.columns-1; i<this.board.length; i+=3){
+			for (int j=i; j>i-this.columns; j--){
+				newGame.board[h] = this.board[j];
+				h++;
+			}
+		}
+		return newGame;
+	}
+
+
+	public TicTacToeGame horizontalFlip() {
+		TicTacToeGame newGame = new TicTacToeGame();
+		int h=0;
+		for (int i = this.board.length-columns; i>=0; i-=3){
+			for (int j=i; j<i+this.columns; j++){
+				newGame.board[h] = this.board[j];
+				h++;
+			}
+		}
+		return newGame;
+	}
+	
+
+
 
    /**
 	* getter for the variable level
