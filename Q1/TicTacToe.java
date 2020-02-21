@@ -10,7 +10,7 @@ public class TicTacToe{
      * used if the paramters are too small (less than 2).
      *
      * @param args
-     *            command line parameters
+     * command line parameters
      */
      public static void main(String[] args) {
 
@@ -60,7 +60,7 @@ public class TicTacToe{
         Player[] players = {human, comp};
 
         // YOUR CODE HERE
-
+        // random number between 1 and 0
         int first = Utils.generator.nextInt(2);
 
         int turn = first;
@@ -68,10 +68,10 @@ public class TicTacToe{
         while (game.getGameState()==GameState.PLAYING){
             System.out.println("Player "+(turn+1)+"'s turn.");
             //System.out.println(players[turn]+" - cue :"+turn);
-            players[turn].play(game);
-            turn = Math.abs(turn-1);
+            players[turn].play(game); //plays for the given player
+            turn = Math.abs(turn-1); //alternates turn
 
-
+            //Code for Draw or Win to ask to play again
             if (game.getGameState()!=GameState.PLAYING) {
                 System.out.println("Game over");
                 System.out.println(game);
@@ -79,9 +79,12 @@ public class TicTacToe{
 
                 String replay = Utils.console.readLine("Want to play again?");
 
+                //Code for if the player wants to rematch
                 if(replay.equals("y") || replay.equals("Y")){
+                    //alternates first to be the other player
                     first = Math.abs(first-1);
                     turn = first;
+                    //Create a new similar game
                     TicTacToeGame newGame = new TicTacToeGame(game.lines, game.columns, game.sizeWin);
                     game = newGame;
                 }
