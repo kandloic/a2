@@ -103,7 +103,8 @@ public class TicTacToeGame {
   	*/
 
 	public TicTacToeGame(TicTacToeGame base, int next){
-		// YOUR CODE HERE
+		// YOUR CODE
+		//Copies all info from previous board as a deep copy
 		this.lines = base.lines;
 		this.columns = base.columns;
 		this.sizeWin = base.sizeWin;
@@ -113,9 +114,10 @@ public class TicTacToeGame {
 		}
 		this.level=base.getLevel();
 
-		//board[next]=nextCellValue();
-
+		//saves time instead of accessing object's GameState
 		gameState = GameState.PLAYING;
+
+		//plays the next X or O
 		this.play(next);
 	}
 
@@ -130,11 +132,13 @@ public class TicTacToeGame {
   	*/
 	public boolean equals(TicTacToeGame other) {
 		// YOUR CODE HERE
+		//returns false if an element in the board is not the same
 		for(int i = 0; i < lines*columns ; i++) {
 			if (this.valueAt(i) != other.valueAt(i)){
 				return false;
 			}
 		}
+		//returns a comparison between all the constructor parameters with &&s
 		return this.lines==other.lines && this.columns==other.columns && this.sizeWin==other.sizeWin;
 	}
 
