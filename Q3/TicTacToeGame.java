@@ -140,12 +140,17 @@ public class TicTacToeGame {
 	}
 
 
-
+	/**
+ 	 * rotate
+ 	 * @return
+	 * Returns a rotated version of the 3x3 board
+	 */
 	public TicTacToeGame rotate() {
         TicTacToeGame newGame = new TicTacToeGame();
         int h=0;
-        
+
         for (int i=this.columns-1; i>=0; i--){
+
             for (int j=i; j<this.lines*this.columns; j+=this.columns){
                 newGame.board[h] = this.valueAt(j);
                 h++;
@@ -154,11 +159,15 @@ public class TicTacToeGame {
         return newGame;
 	}
 
-
+	/**
+ 	 * verticalFlip
+ 	 * @return
+	 * Returns a verticaly flipped version of the 3x3 board
+	 */
 	public TicTacToeGame verticalFlip() {
 		TicTacToeGame newGame = new TicTacToeGame();
 		int h=0;
-		for (int i=this.columns-1; i<this.board.length; i+=columns){
+		for (int i=this.columns-1; i<this.board.length; i+=this.columns){
 			for (int j=i; j>i-this.columns; j--){
 				newGame.board[h] = this.board[j];
 				h++;
@@ -167,11 +176,15 @@ public class TicTacToeGame {
 		return newGame;
 	}
 
-
+	/**
+ 	 * horizontalFlip
+ 	 * @return
+	 * Returns a horizontaly flipped version of the 3x3 board
+	 */
 	public TicTacToeGame horizontalFlip() {
 		TicTacToeGame newGame = new TicTacToeGame();
 		int h=0;
-		for (int i = this.board.length-columns; i>=0; i-=columns){
+		for (int i = this.board.length-columns; i>=0; i-=this.columns){
 			for (int j=i; j<i+this.columns; j++){
 				newGame.board[h] = this.board[j];
 				h++;
@@ -180,11 +193,15 @@ public class TicTacToeGame {
 		return newGame;
 	}
 
-
+	/**
+ 	 * diagonalSymetry
+ 	 * @return
+	 * Returns a diagonaly flipped version of the 3x3 board
+	 */
 	public TicTacToeGame diagonalSymetry() {
 		TicTacToeGame newGame = new TicTacToeGame();
 		int h=0;
-		for (int i = this.board.length-1; i>=this.board.length-columns;i--){
+		for (int i = this.board.length-1; i>=this.board.length-this.columns;i--){
 			for (int j = i; j>=0; j-=lines){
 				newGame.board[h]  = this.board[j];
 				h++;
@@ -192,19 +209,23 @@ public class TicTacToeGame {
 		}
 		return newGame;
 	}
-
+	/**
+ 	 * counterDiagonalSymetry
+ 	 * @return
+	 * Returns a counter-diagonaly flipped version of the 3x3 board
+	 */
 	public TicTacToeGame counterDiagonalSymetry() {
 		TicTacToeGame newGame = new TicTacToeGame();
 		int h=0;
-		for (int i = 0; i<lines;i++){
-			for (int j = i; j<this.board.length; j+=columns){
+		for (int i = 0; i<this.lines;i++){
+			for (int j = i; j<this.board.length; j+=this.columns){
 				newGame.board[h]  = this.board[j];
 				h++;
 			}
 		}
 		return newGame;
 	}
-	
+
 
 
 
