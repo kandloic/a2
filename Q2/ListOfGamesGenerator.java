@@ -11,10 +11,10 @@ import java.util.LinkedList;
  */
 public class ListOfGamesGenerator {
    /**
-		* generates all different games for the specified
-		* parameters. Each game is recorded only once.
-		* once a game is finished, it is not extended further
-		* @param lines
+	* generates all different games for the specified
+	* parameters. Each game is recorded only once.
+	* once a game is finished, it is not extended further
+	* @param lines
     *  the number of lines in the game
     * @param columns
     *  the number of columns in the game
@@ -71,9 +71,11 @@ public class ListOfGamesGenerator {
 						}
 					}
 				}
+				/* USED FOR DEBUGGING PURPOSES
 				//count++;
 				//System.out.println("i:"+i);
 				//System.out.println(count+" INNER LOOP!!!!!!!!!!!!!!!!!!!!!!");
+				*/
 			}
 			playable=false;
 			//playable will be false unless there's a playable TicTacToeGame in inner
@@ -86,21 +88,28 @@ public class ListOfGamesGenerator {
 			//always adds the inner to the outer
 			outer.add(inner);
 
-			// for(int a=0; a<outer.size(); a++){
-			// 	for(int b=0; b<outer.get(a).size(); b++){
-			// 			System.out.println(outer.get(a).get(b));
-			// 	}
-			// }
+			/* USED FOR DEBUGGING PURPOSES
+			 for(int a=0; a<outer.size(); a++){
+			 	for(int b=0; b<outer.get(a).size(); b++){
+			 			System.out.println(outer.get(a).get(b));
+			 	}
+			 }
+			*/
 
 			//It would have been nice to use a for on the outside, but a while and 
 			//this variable is the right way to do it.
 			h++;
-			//System.out.println("h:"+h);
-			//System.out.println("OUTER length"+outer.size());
-			//System.out.println(count+" OUTER LOOP!!!!!!!!!!!!!!!!!!!!!!");
+
+			/* USED FOR DEBUGGING PURPOSES
+			System.out.println("h:"+h);
+			System.out.println("OUTER length"+outer.size());
+			System.out.println(count+" OUTER LOOP!");
+			*/
 		}
 
-		//System.out.println("OUTER length"+outer.size());
+		/* USED FOR DEBUGGING PURPOSES
+		System.out.println("OUTER length"+outer.size());
+		*/
 
 		return outer;
 	}

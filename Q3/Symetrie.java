@@ -9,38 +9,17 @@
  */
 public class Symetrie {
 
-    /*public int[] coord (TicTacToeGame game, int boardIndex){
-        int[] xy = new int [2];
-        xy[0] = boardIndex/(game.columns);
-        xy[1] = boardIndex%(game.lines);
-        return xy;
-    }*/
-
-
-    /*public TicTacToeGame rotate (TicTacToeGame game){
-        TicTacToeGame newGame = new TicTacToeGame();
-        int h=0;
-
-        for (int i=game.columns-1; i>=0; i--){
-            for (int j=i; j<game.lines*game.columns; j+=game.columns){
-                newGame.board[h] = game.valueAt(j);
-                h++;
-            }
-        }
-        return newGame;
-    }*/
-
     /**
- 	   * symetry takes two TicTacToeGames and determines wether or not they are symetric
+     * symetry takes two TicTacToeGames and determines whether or not they are symetric
      * the symetry can be up to 3 rotations, vertical, horizontal, diagonal, or counter-diagonal
      * this function only works for square TicTacToeGames
- 	   * @param game
- 	   *  a TicTacToeGame to compare with newGame
- 	   * @param newGame
- 	   *  the second TicTacToeGame to compare with game
- 	   * @return
- 	   * a boolean to represent if the two given TicTacToeGames are symetric in any way
- 		 */
+     * @param game
+     * a TicTacToeGame to compare with newGame
+     * @param newGame
+     * the second TicTacToeGame to compare with game
+     * @return
+     * a boolean to represent if the two given TicTacToeGames are symetric in any way
+     */
     public static boolean symetry (TicTacToeGame game, TicTacToeGame newGame){
         // CODE HERE
 

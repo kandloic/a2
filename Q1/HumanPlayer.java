@@ -6,12 +6,15 @@
  *
  * @author Jean-Loic Kandikandi and Nicholas Morin
  */
+
 public class HumanPlayer implements Player{
+
     /**
-    *this is the play method
-    *it is used to add a value in TicTacToeGame's Cellvalue array
-    *@param game The TicTacToeGame object to which you want to add X's or O's
-    */
+     *this is the play method
+     *it is used to add a value in TicTacToeGame's Cellvalue array
+     *@param game The TicTacToeGame object to which you want to add X's or O's
+     */
+
     public void play (TicTacToeGame game){
         if (game.getGameState()!=GameState.PLAYING){
             System.out.println("Error! Game is not playable!");
@@ -31,7 +34,7 @@ public class HumanPlayer implements Player{
             } else if(game.valueAt(value) != CellValue.EMPTY) {
                 //Cell played case
                 System.out.println("This cell has already been played");
-                play(game);
+                play(game); // recursion to prevent a change of turns before a valid input has been entered
             } else {
               //adds the X or O to the TicTacToeGame object
             	game.play(value);

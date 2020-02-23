@@ -150,7 +150,6 @@ public class TicTacToeGame {
         int h=0;
 
         for (int i=this.columns-1; i>=0; i--){
-
             for (int j=i; j<this.lines*this.columns; j+=this.columns){
                 newGame.board[h] = this.valueAt(j);
                 h++;
